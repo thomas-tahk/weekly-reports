@@ -1,0 +1,20 @@
+# Projects included in the weekly activity report.
+# One GitHub repo name per line (owner is thomas-tahk).
+# Lines starting with # and blank lines are ignored.
+# Edit this file (even from GitHub's web UI) to add or remove projects — no code changes needed.
+
+TTunes
+priority-post
+knowflow
+pocket-draft
+kb-helper
+thomas-tahk-portfolio-game
+llm-plays-sc
+job-app-dispatch
+shows-for-us
+amugonna
+ai-advisor
+Dormant
+ez-golf
+pwp-rts-timeline
+esports-tldr

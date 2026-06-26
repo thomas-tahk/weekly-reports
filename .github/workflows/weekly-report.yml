@@ -1,0 +1,34 @@
+name: Weekly Activity Report
+
+on:
+  schedule:
+    # 05:00 UTC Monday = ~11pm Sunday America/Denver (MDT; ~10pm in MST).
+    - cron: "0 5 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out weekly-reports
+        uses: actions/checkout@v4
+
+      - name: Generate report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/generate_report.py
+
+      - name: Commit and push report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+          else
+            git commit -m "Weekly report $(date -u +%G-W%V)"
+            git push
+          fi
